@@ -82,7 +82,6 @@ code --install-extension extension-vs-code-0.0.1.vsix
 
 ```php
 $conn = new mysqli('localhost', 'user', 'password', 'database');
-hui
 ```
 
 После вставки вы можете:
