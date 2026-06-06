@@ -10,7 +10,9 @@
 		"outDir": "out",
 		"strict": true,
 		"moduleResolution": "Node16",
-		"skipLibCheck": true
+		"resolveJsonModule": true,
+    	"esModuleInterop": true,
+		"skipLibCheck": true,
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules", "out", "dist"]

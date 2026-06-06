@@ -1,0 +1,8 @@
+{
+  "command": "extension-vs-code.db",
+  "prefix": "??db",
+  "template": [
+    "$$conn = new mysqli('localhost', 'user', 'password', 'database')",
+    "hui"
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "command": "extension-vs-code.admin",
+  "prefix": "!admin",
+  "template": ""
+}
