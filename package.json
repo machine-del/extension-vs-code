@@ -17,7 +17,27 @@
     "commands": [
       {
         "command": "extension-vs-code.db",
-        "title": "Insert DB Template"
+        "title": "1"
+      },
+      {
+        "command": "extension-vs-code.admin",
+        "title": "2"
+      },
+      {
+        "command": "extension-vs-code.login",
+        "title": "3"
+      },
+      {
+        "command": "extension-vs-code.register",
+        "title": "4"
+      },
+      {
+        "command": "extension-vs-code.application",
+        "title": "5"
+      },
+      {
+        "command": "extension-vs-code.requestApplication",
+        "title": "6"
       }
     ]
   },

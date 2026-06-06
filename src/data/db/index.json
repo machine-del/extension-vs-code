@@ -2,7 +2,7 @@
   "command": "extension-vs-code.db",
   "prefix": "de_db",
   "template": [
-    "$conn = new mysqli('localhost', 'user', 'password', 'database')",
+    "$conn = new mysqli('localhost', 'user', 'password', 'database');",
     "hui"
   ]
 }
