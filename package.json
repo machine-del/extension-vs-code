@@ -16,8 +16,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension-vs-code.helloWorld",
-        "title": "Hello World"
+        "command": "extension-vs-code.db",
+        "title": "Insert DB Template"
       }
     ]
   },

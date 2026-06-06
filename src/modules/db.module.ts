@@ -6,38 +6,50 @@ export function DbModule() {
 
   const handler = () => {
     const editor = vscode.window.activeTextEditor;
-    if (editor) {
-      editor.insertSnippet(new vscode.SnippetString(data.template.join("\n")));
+
+    if (!editor || !Array.isArray(data.template)) {
+      return;
     }
+
+    editor.insertSnippet(new vscode.SnippetString(data.template.join("\n")));
   };
 
-  const provider = vscode.languages.registerCompletionItemProvider(["php"], {
-    provideCompletionItems(document, position) {
-      // eslint-disable-next-line curly
-      if (!Array.isArray(data.template)) return undefined;
+  const provider = vscode.languages.registerCompletionItemProvider(
+    "php",
+    {
+      provideCompletionItems(document, position) {
+        if (!Array.isArray(data.template)) {
+          return;
+        }
 
-      const range = document.getWordRangeAtPosition(position, /[^\s]+/);
-      const word = range ? document.getText(range) : "";
+        const range = document.getWordRangeAtPosition(position);
 
-      if (word !== data.prefix && !data.prefix.startsWith(word)) {
-        return undefined;
-      }
+        const word = range ? document.getText(range) : "";
 
-      const item = new vscode.CompletionItem(
-        data.prefix,
-        vscode.CompletionItemKind.Snippet,
-      );
-      item.sortText = "000";
-      item.preselect = true;
-      item.insertText = new vscode.SnippetString(data.template.join("\n"));
-      item.detail = "Database connection snippet";
-      item.documentation = new vscode.MarkdownString(
-        "Insert MySQLi connection code",
-      );
+        if (word && !data.prefix.startsWith(word)) {
+          return;
+        }
 
-      return [item];
+        const snippet = data.template.join("\n").replace(/\$/g, "\\$");
+
+        const item = new vscode.CompletionItem(
+          data.prefix,
+          vscode.CompletionItemKind.Snippet,
+        );
+
+        item.insertText = new vscode.SnippetString(snippet);
+        item.sortText = "0000";
+        item.preselect = true;
+
+        if (range) {
+          item.range = range;
+        }
+
+        return [item];
+      },
     },
-  });
+    data.prefix.charAt(0),
+  );
 
   return {
     command,
