@@ -1,5 +1,14 @@
 {
-  "command": "extension-vs-code.admin",
+  "command": "extension-vs-code.register",
   "prefix": "de_reg",
-  "template": "// Registration logic\nfunction registerUser(username, password) {\n  // TODO: Implement registration logic here\n  console.log(`Registering user: ${username}`);\n}\n\n// Example usage\nregisterUser('exampleUser', 'examplePassword');"
+  "template": [
+    "// Registration logic",
+    "function registerUser(username, password) {",
+    "  // TODO: Implement registration logic here",
+    "  console.log(`Registering user: ${username}`);",
+    "}",
+    "",
+    "// Example usage",
+    "registerUser('exampleUser', 'examplePassword');"
+  ]
 }

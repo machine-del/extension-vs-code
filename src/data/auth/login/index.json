@@ -1,5 +1,14 @@
 {
-  "command": "extension-vs-code.admin",
+  "command": "extension-vs-code.login",
   "prefix": "de_login",
-  "template": "// Login logic\nfunction loginUser(username, password) {\n  // TODO: Implement login logic here\n  console.log(`Logging in user: ${username}`);\n}\n\n// Example usage\nloginUser('exampleUser', 'examplePassword');"
+  "template": [
+    "// Login logic",
+    "function loginUser(username, password) {",
+    "  // TODO: Implement login logic here",
+    "  console.log(`Logging in user: ${username}`);",
+    "}",
+    "",
+    "// Example usage",
+    "loginUser('exampleUser', 'examplePassword');"
+  ]
 }

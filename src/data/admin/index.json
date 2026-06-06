@@ -1,5 +1,14 @@
 {
   "command": "extension-vs-code.admin",
   "prefix": "de_admin",
-  "template": "// Admin logic\nfunction adminAction() {\n  // TODO: Implement admin logic here\n  console.log('Performing admin action');\n}\n\n// Example usage\nadminAction();"
+  "template": [
+    "// Admin logic",
+    "function adminAction() {",
+    "  // TODO: Implement admin logic here",
+    "  console.log('Performing admin action');",
+    "}",
+    "",
+    "// Example usage",
+    "adminAction();"
+  ]
 }

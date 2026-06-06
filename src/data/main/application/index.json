@@ -1,5 +1,14 @@
 {
-  "command": "extension-vs-code.admin",
+  "command": "extension-vs-code.application",
   "prefix": "de_app",
-  "template": "// Application logic\nfunction applicationAction() {\n  // TODO: Implement application logic here\n  console.log('Performing application action');\n}\n\n// Example usage\napplicationAction();"
+  "template": [
+    "// Application logic",
+    "function applicationAction() {",
+    "  // TODO: Implement application logic here",
+    "  console.log('Performing application action');",
+    "}",
+    "",
+    "// Example usage",
+    "applicationAction();"
+  ]
 }

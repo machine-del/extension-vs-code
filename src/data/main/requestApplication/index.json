@@ -1,5 +1,14 @@
 {
-  "command": "extension-vs-code.admin",
+  "command": "extension-vs-code.requestApplication",
   "prefix": "de_req_app",
-  "template": "// Request Application logic\nfunction requestApplication() {\n  // TODO: Implement request application logic here\n  console.log('Requesting application');\n}\n\n// Example usage\nrequestApplication();"
+  "template": [
+    "// Request Application logic",
+    "function requestApplication() {",
+    "  // TODO: Implement request application logic here",
+    "  console.log('Requesting application');",
+    "}",
+    "",
+    "// Example usage",
+    "requestApplication();"
+  ]
 }
