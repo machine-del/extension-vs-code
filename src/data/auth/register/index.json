@@ -1,14 +1,38 @@
 {
-  "command": "extension-vs-code.register",
-  "prefix": "de_reg",
-  "template": [
-    "// Registration logic",
-    "function registerUser(username, password) {",
-    "  // TODO: Implement registration logic here",
-    "  console.log(`Registering user: ${username}`);",
-    "}",
-    "",
-    "// Example usage",
-    "registerUser('exampleUser', 'examplePassword');"
-  ]
+  "templates": {
+    "loginMySqli": {
+      "command": "extension-vs-code.reg",
+      "prefix": "de_reg",
+      "template": [
+        "// Login logic",
+        "function loginUser(username, password) {",
+        "  // TODO: Implement login logic here",
+        "  console.log(`Logging in user: ${username}`);",
+        "}",
+        "",
+        "// Example usage",
+        "loginUser('exampleUser', 'examplePassword');"
+      ]
+    },
+    "loginFunc": {
+      "command": "extension-vs-code.regFunc",
+      "prefix": "de_regFunc",
+      "template": [
+        "function register($conn, $id_role, $login, $password, $fio, $phone, $email)",
+        "{",
+        "    $sqlCheck = \"SELECT id FROM users WHERE login='$login'\";",
+        "    $q = $conn->query($sqlCheck);",
+        "    if ($q->num_rows > 0) {",
+        "        return \"Логин уже занят\";",
+        "    };",
+        "",
+        "    $sql = \"INSERT INTO `users` (`id_role`, `login`, `password`, `fio`, `phone`, `email`) VALUES ('$id_role','$login','$password','$fio','$phone','$email')\";",
+        "    if ($conn->query($sql)) {",
+        "        return true;",
+        "    }",
+        "    return \"Ошибка регистрации\";",
+        "}"
+      ]
+    }
+  }
 }

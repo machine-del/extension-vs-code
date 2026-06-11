@@ -2,58 +2,46 @@ import data from "../data/auth/register/index.json";
 import * as vscode from "vscode";
 
 export function RegisterModule() {
-  const command = data.command;
+  const commands = [];
+  const providers = [];
 
-  const handler = () => {
-    const editor = vscode.window.activeTextEditor;
+  for (const [templateName, templateData] of Object.entries(data.templates)) {
+    const command = templateData.command;
+    const prefix = templateData.prefix;
+    const template = templateData.template;
 
-    if (!editor || !Array.isArray(data.template)) {
-      return;
-    }
+    const handler = () => {
+      const editor = vscode.window.activeTextEditor;
+      if (!editor || !Array.isArray(template)) return;
+      editor.insertSnippet(new vscode.SnippetString(template.join("\n")));
+    };
 
-    editor.insertSnippet(new vscode.SnippetString(data.template.join("\n")));
-  };
-
-  const provider = vscode.languages.registerCompletionItemProvider(
-    "php",
-    {
-      provideCompletionItems(document, position) {
-        if (!Array.isArray(data.template)) {
-          return;
-        }
-
-        const range = document.getWordRangeAtPosition(position);
-
-        const word = range ? document.getText(range) : "";
-
-        if (word && !data.prefix.startsWith(word)) {
-          return;
-        }
-
-        const snippet = data.template.join("\n").replace(/\$/g, "\\$");
-
-        const item = new vscode.CompletionItem(
-          data.prefix,
-          vscode.CompletionItemKind.Snippet,
-        );
-
-        item.insertText = new vscode.SnippetString(snippet);
-        item.sortText = "0000";
-        item.preselect = true;
-
-        if (range) {
-          item.range = range;
-        }
-
-        return [item];
+    const provider = vscode.languages.registerCompletionItemProvider(
+      "php",
+      {
+        provideCompletionItems(document, position) {
+          if (!Array.isArray(template)) return;
+          const range = document.getWordRangeAtPosition(position);
+          const word = range ? document.getText(range) : "";
+          if (word && !prefix.startsWith(word)) return;
+          const snippet = template.join("\n").replace(/\$/g, "\\$");
+          const item = new vscode.CompletionItem(
+            prefix,
+            vscode.CompletionItemKind.Snippet,
+          );
+          item.insertText = new vscode.SnippetString(snippet);
+          item.sortText = "0000";
+          item.preselect = true;
+          if (range) item.range = range;
+          return [item];
+        },
       },
-    },
-    data.prefix.charAt(0),
-  );
+      prefix.charAt(0),
+    );
 
-  return {
-    command,
-    handler,
-    provider,
-  };
+    commands.push({ command, handler });
+    providers.push(provider);
+  }
+
+  return { commands, providers };
 }

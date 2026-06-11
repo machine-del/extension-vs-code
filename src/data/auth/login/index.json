@@ -1,14 +1,43 @@
 {
-  "command": "extension-vs-code.login",
-  "prefix": "de_login",
-  "template": [
-    "// Login logic",
-    "function loginUser(username, password) {",
-    "  // TODO: Implement login logic here",
-    "  console.log(`Logging in user: ${username}`);",
-    "}",
-    "",
-    "// Example usage",
-    "loginUser('exampleUser', 'examplePassword');"
-  ]
+  "templates": {
+    "loginMySqli": {
+      "command": "extension-vs-code.login",
+      "prefix": "de_login",
+      "template": [
+        "// Login logic",
+        "function loginUser(username, password) {",
+        "  // TODO: Implement login logic here",
+        "  console.log(`Logging in user: ${username}`);",
+        "}",
+        "",
+        "// Example usage",
+        "loginUser('exampleUser', 'examplePassword');"
+      ]
+    },
+    "loginFunc": {
+      "command": "extension-vs-code.loginFunc",
+      "prefix": "de_loginFunc",
+      "template": [
+        "function auth($conn, $login, $password)",
+        "{",
+        "    $sql = \"SELECT id, login, id_role FROM users WHERE login='$login' AND password='$password'\";",
+        "",
+        "    $result = $conn->query($sql);",
+        "",
+        "    if ($result->num_rows > 0) {",
+        "        $row = $result->fetch_assoc();",
+        "        $_SESSION['isAuth'] = true;",
+        "        $_SESSION['id_user'] = $row['id'];",
+        "        $_SESSION['user_login'] = $row['login'];",
+        "        $_SESSION['role'] = $row['id_role'];",
+        "        return true;",
+        "    }",
+        "    return false;",
+        "}",
+        "",
+        "// Example usage (if needed)",
+        "// auth($conn, 'user', 'password');"
+      ]
+    }
+  }
 }

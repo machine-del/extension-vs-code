@@ -7,22 +7,24 @@ export function activate(context: vscode.ExtensionContext) {
   modules.forEach((moduleFactory) => {
     const module = moduleFactory();
 
-    console.log("Loading:", module?.command);
-
     if (!module) {
       console.log("Module is null");
       return;
     }
+    console.log(`Registering ${module.commands.length} commands`);
+    module.commands.forEach(({ command, handler }) => {
+      console.log(`  - ${command}`);
+      const disposable = vscode.commands.registerCommand(command, handler);
+      context.subscriptions.push(disposable);
+    });
 
-    const disposable = vscode.commands.registerCommand(
-      module.command,
-      module.handler,
-    );
-
-    context.subscriptions.push(disposable);
-
-    if (module.provider) {
-      context.subscriptions.push(module.provider);
+    if (module.providers && Array.isArray(module.providers)) {
+      console.log(`Registering ${module.providers.length} providers`);
+      module.providers.forEach((provider) => {
+        if (provider) {
+          context.subscriptions.push(provider);
+        }
+      });
     }
   });
 }

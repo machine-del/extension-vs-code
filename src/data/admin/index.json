@@ -1,14 +1,14 @@
 {
-  "command": "extension-vs-code.admin",
-  "prefix": "de_admin",
-  "template": [
-    "// Admin logic",
-    "function adminAction() {",
-    "  // TODO: Implement admin logic here",
-    "  console.log('Performing admin action');",
-    "}",
-    "",
-    "// Example usage",
-    "adminAction();"
-  ]
+  "templates": {
+    "admin1": {
+      "command": "extension-vscode.adminCommand1",
+      "prefix": "admin_prefix1",
+      "template": ["function adminFunction1() {", "    // code here", "}"]
+    },
+    "admin2": {
+      "command": "extension-vscode.adminCommand2",
+      "prefix": "admin_prefix2",
+      "template": ["function adminFunction2() {", "    // code here", "}"]
+    }
+  }
 }
